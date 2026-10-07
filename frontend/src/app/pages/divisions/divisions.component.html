@@ -1,0 +1,71 @@
+<h4 class="page-title">Division Management</h4>
+
+@if (error) { <div class="alert alert-danger">{{ error }}</div> }
+@if (success) { <div class="alert alert-success">{{ success }}</div> }
+
+<div class="row g-3">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h6>{{ editingId ? 'Edit division' : 'Add division' }}</h6>
+        <form (ngSubmit)="save()">
+          <div class="mb-2">
+            <label class="form-label">Name</label>
+            <input class="form-control" [(ngModel)]="form.name" name="name" placeholder="SE-A" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Department</label>
+            <input class="form-control" [(ngModel)]="form.department" name="department" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Year</label>
+            <input class="form-control" [(ngModel)]="form.year" name="year" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Semester</label>
+            <input class="form-control" type="number" [(ngModel)]="form.semester" name="semester" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Student count</label>
+            <input class="form-control" type="number" [(ngModel)]="form.studentCount" name="studentCount" required>
+          </div>
+          <button class="btn btn-primary me-2" type="submit">Save</button>
+          @if (editingId) {
+            <button class="btn btn-outline-secondary" type="button" (click)="reset()">Cancel</button>
+          }
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card">
+      <table class="table table-sm align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Students</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (d of divisions; track d._id) {
+            <tr>
+              <td>{{ d.name }}</td>
+              <td>{{ d.department }}</td>
+              <td>{{ d.year }}</td>
+              <td>{{ d.semester }}</td>
+              <td>{{ d.studentCount }}</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1" (click)="edit(d)">Edit</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="remove(d)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<h4 class="page-title">Teacher Availability</h4>
+<p class="text-muted">Unchecked cells are treated as unavailable periods.</p>
+
+@if (error) { <div class="alert alert-danger">{{ error }}</div> }
+@if (success) { <div class="alert alert-success">{{ success }}</div> }
+
+<div class="card">
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label">Teacher</label>
+        <select class="form-select" [(ngModel)]="selectedId" (ngModelChange)="onTeacherChange()">
+          @for (t of teachers; track t._id) {
+            <option [value]="t._id">{{ t.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>Period</th>
+            @for (d of days; track d) { <th>{{ d }}</th> }
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of periods; track p) {
+            <tr>
+              <th>P{{ p }}</th>
+              @for (d of days; track d) {
+                <td>
+                  <input type="checkbox" [(ngModel)]="grid[key(d, p)]" [name]="key(d, p)">
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-primary" (click)="save()" [disabled]="!selectedId">Save availability</button>
+  </div>
+</div>

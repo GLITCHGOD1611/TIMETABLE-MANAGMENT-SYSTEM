@@ -1,0 +1,74 @@
+<h4 class="page-title">Dashboard</h4>
+<p class="text-muted">Overview of timetable master data</p>
+
+@if (error) {
+  <div class="alert alert-danger">{{ error }}</div>
+}
+
+<div class="row g-3">
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Teachers</div>
+        <div class="stat-value">{{ stats.teachers || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Subjects</div>
+        <div class="stat-value">{{ stats.subjects || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Divisions</div>
+        <div class="stat-value">{{ stats.divisions || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Classrooms</div>
+        <div class="stat-value">{{ stats.classrooms || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Time Slots</div>
+        <div class="stat-value">{{ stats.timeSlots || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Required Lectures</div>
+        <div class="stat-value">{{ stats.requiredLectures || 0 }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card">
+      <div class="card-body">
+        <div class="stat-label">Scheduled Lectures</div>
+        <div class="stat-value">{{ stats.lectures || 0 }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <h6>Quick actions</h6>
+    <a class="btn btn-primary me-2" routerLink="/timetable">Open timetable</a>
+    <a class="btn btn-outline-secondary me-2" routerLink="/teachers">Manage teachers</a>
+    <a class="btn btn-outline-secondary" routerLink="/subjects">Manage subjects</a>
+  </div>
+</div>

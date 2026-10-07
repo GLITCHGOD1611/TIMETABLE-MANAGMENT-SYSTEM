@@ -1,0 +1,86 @@
+<h4 class="page-title">Time Slot Management</h4>
+<p class="text-muted">Configure Monday-Friday lecture periods.</p>
+
+@if (error) { <div class="alert alert-danger">{{ error }}</div> }
+@if (success) { <div class="alert alert-success">{{ success }}</div> }
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6>Replace full week periods</h6>
+        <p class="small text-muted">This recreates the same periods for Monday through Friday.</p>
+        @for (p of weekPeriods; track p.period) {
+          <div class="row g-2 mb-2">
+            <div class="col-3">
+              <input class="form-control form-control-sm" type="number" [(ngModel)]="p.period" [name]="'wp'+p.period">
+            </div>
+            <div class="col-4">
+              <input class="form-control form-control-sm" [(ngModel)]="p.startTime" [name]="'ws'+p.period">
+            </div>
+            <div class="col-4">
+              <input class="form-control form-control-sm" [(ngModel)]="p.endTime" [name]="'we'+p.period">
+            </div>
+          </div>
+        }
+        <button class="btn btn-primary" (click)="applyWeek()">Apply to Mon-Fri</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h6>Add single slot</h6>
+        <form (ngSubmit)="save()">
+          <div class="mb-2">
+            <label class="form-label">Day</label>
+            <select class="form-select" [(ngModel)]="form.day" name="day">
+              @for (d of days; track d) { <option [value]="d">{{ d }}</option> }
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Period</label>
+            <input class="form-control" type="number" [(ngModel)]="form.period" name="period">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Start time</label>
+            <input class="form-control" [(ngModel)]="form.startTime" name="startTime">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">End time</label>
+            <input class="form-control" [(ngModel)]="form.endTime" name="endTime">
+          </div>
+          <button class="btn btn-primary" type="submit">Add slot</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Period</th>
+              <th>Start</th>
+              <th>End</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of slots; track s._id) {
+              <tr>
+                <td>{{ s.day }}</td>
+                <td>{{ s.period }}</td>
+                <td>{{ s.startTime }}</td>
+                <td>{{ s.endTime }}</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-danger" (click)="remove(s)">Delete</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

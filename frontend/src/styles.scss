@@ -1,0 +1,53 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body {
+  height: 100%;
+  background: #f4f6f8;
+  color: #1f2a37;
+}
+
+.page-title {
+  color: #1b365d;
+  font-weight: 700;
+}
+
+.card {
+  border: 1px solid #dde3ea;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: #1b365d;
+  border-color: #1b365d;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #163054;
+  border-color: #163054;
+}
+
+.table thead th {
+  background: #eef3f8;
+  color: #1b365d;
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #1b365d;
+  box-shadow: 0 0 0 0.15rem rgba(27, 54, 93, 0.15);
+}
+
+.stat-card .stat-label {
+  color: #6b7785;
+  font-size: 0.85rem;
+}
+
+.stat-card .stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1b365d;
+}

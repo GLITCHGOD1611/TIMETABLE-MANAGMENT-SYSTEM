@@ -1,0 +1,31 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-title">College TMS</div>
+      <div class="brand-sub">Timetable Management</div>
+    </div>
+    <nav class="nav flex-column">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+      <a routerLink="/teachers" routerLinkActive="active" class="nav-link">Teachers</a>
+      <a routerLink="/subjects" routerLinkActive="active" class="nav-link">Subjects</a>
+      <a routerLink="/divisions" routerLinkActive="active" class="nav-link">Divisions</a>
+      <a routerLink="/classrooms" routerLinkActive="active" class="nav-link">Classrooms</a>
+      <a routerLink="/timeslots" routerLinkActive="active" class="nav-link">Time Slots</a>
+      <a routerLink="/availability" routerLinkActive="active" class="nav-link">Availability</a>
+      <a routerLink="/timetable" routerLinkActive="active" class="nav-link">Timetable</a>
+    </nav>
+    <button class="btn btn-outline-light btn-sm logout-btn" (click)="auth.logout()">Logout</button>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <strong>Computer Engineering</strong>
+        <span class="text-muted ms-2">Admin Console</span>
+      </div>
+      <div class="user-chip">{{ auth.getUser()?.name }}</div>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

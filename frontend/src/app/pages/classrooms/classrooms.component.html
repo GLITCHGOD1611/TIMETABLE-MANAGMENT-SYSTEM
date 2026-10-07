@@ -1,0 +1,62 @@
+<h4 class="page-title">Classroom Management</h4>
+
+@if (error) { <div class="alert alert-danger">{{ error }}</div> }
+@if (success) { <div class="alert alert-success">{{ success }}</div> }
+
+<div class="row g-3">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h6>{{ editingId ? 'Edit classroom' : 'Add classroom' }}</h6>
+        <form (ngSubmit)="save()">
+          <div class="mb-2">
+            <label class="form-label">Room number</label>
+            <input class="form-control" [(ngModel)]="form.roomNumber" name="roomNumber" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Capacity</label>
+            <input class="form-control" type="number" [(ngModel)]="form.capacity" name="capacity" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" [(ngModel)]="form.type" name="type">
+              <option>Theory</option>
+              <option>Lab</option>
+            </select>
+          </div>
+          <button class="btn btn-primary me-2" type="submit">Save</button>
+          @if (editingId) {
+            <button class="btn btn-outline-secondary" type="button" (click)="reset()">Cancel</button>
+          }
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card">
+      <table class="table table-sm align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Room</th>
+            <th>Capacity</th>
+            <th>Type</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of classrooms; track c._id) {
+            <tr>
+              <td>{{ c.roomNumber }}</td>
+              <td>{{ c.capacity }}</td>
+              <td>{{ c.type }}</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1" (click)="edit(c)">Edit</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="remove(c)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

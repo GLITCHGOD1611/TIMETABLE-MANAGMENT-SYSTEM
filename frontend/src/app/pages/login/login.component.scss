@@ -1,0 +1,19 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6f8;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #dde3ea;
+  box-shadow: 0 4px 16px rgba(27, 54, 93, 0.08);
+}
+
+.btn-primary {
+  background: #1b365d;
+  border-color: #1b365d;
+}

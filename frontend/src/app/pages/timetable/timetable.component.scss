@@ -1,0 +1,65 @@
+.timetable-grid th,
+.timetable-grid td {
+  vertical-align: top;
+  min-width: 140px;
+}
+
+.tt-cell {
+  cursor: pointer;
+  height: 92px;
+  background: #fff;
+}
+
+.tt-cell:hover {
+  background: #eef3f8;
+}
+
+.sub {
+  font-weight: 600;
+  color: #1b365d;
+  font-size: 0.86rem;
+}
+
+.meta {
+  font-size: 0.78rem;
+  color: #4a5560;
+}
+
+.empty {
+  color: #9aa5b1;
+  font-size: 0.8rem;
+}
+
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 45, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.edit-card {
+  width: 420px;
+}
+
+.print-header {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-header {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .tt-cell {
+    cursor: default;
+    height: auto;
+  }
+}

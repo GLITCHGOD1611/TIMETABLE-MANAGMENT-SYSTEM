@@ -1,0 +1,92 @@
+<h4 class="page-title">Subject Management</h4>
+
+@if (error) { <div class="alert alert-danger">{{ error }}</div> }
+@if (success) { <div class="alert alert-success">{{ success }}</div> }
+
+<div class="row g-3">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h6>{{ editingId ? 'Edit subject' : 'Add subject' }}</h6>
+        <form (ngSubmit)="save()">
+          <div class="mb-2">
+            <label class="form-label">Subject name</label>
+            <input class="form-control" [(ngModel)]="form.name" name="name" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Subject code</label>
+            <input class="form-control" [(ngModel)]="form.code" name="code" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Assigned teacher</label>
+            <select class="form-select" [(ngModel)]="form.teacher" name="teacher" required>
+              <option value="">Select teacher</option>
+              @for (t of teachers; track t._id) {
+                <option [value]="t._id">{{ t.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Division</label>
+            <select class="form-select" [(ngModel)]="form.division" name="division" required>
+              <option value="">Select division</option>
+              @for (d of divisions; track d._id) {
+                <option [value]="d._id">{{ d.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Lectures per week</label>
+            <input class="form-control" type="number" min="1" [(ngModel)]="form.lecturesPerWeek" name="lecturesPerWeek" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" [(ngModel)]="form.type" name="type">
+              <option>Theory</option>
+              <option>Practical</option>
+            </select>
+          </div>
+          <button class="btn btn-primary me-2" type="submit">Save</button>
+          @if (editingId) {
+            <button class="btn btn-outline-secondary" type="button" (click)="reset()">Cancel</button>
+          }
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Teacher</th>
+              <th>Division</th>
+              <th>Lectures</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (s of subjects; track s._id) {
+              <tr>
+                <td>{{ s.code }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.teacher?.name }}</td>
+                <td>{{ s.division?.name }}</td>
+                <td>{{ s.lecturesPerWeek }}</td>
+                <td>{{ s.type }}</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary me-1" (click)="edit(s)">Edit</button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="remove(s)">Delete</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
